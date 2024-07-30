@@ -4,15 +4,14 @@ layout: home
 
 hero:
   name: "Gleam Bits"
-  text: "Bite-sized pieces of Gleam knowledge"
-  tagline: My great project tagline
+  tagline: "Bite-sized pieces of Gleam knowledge"
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Guide
+      link: /guide
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Patterns
+      link: /patterns
 
 features:
   - title: Feature A

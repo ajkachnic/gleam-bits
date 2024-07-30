@@ -2,53 +2,53 @@ import { defineConfig } from "vitepress";
 
 const guideSidebar = [
   {
-    text: "The Basics",
-    link: "guide/basics",
+    text: "The Essentials",
+    link: "guide/essentials",
     items: [
-      { text: "Error handling", link: "/guide/basics/error-handling" },
-      { text: "Testing", link: "/guide/basics/testing" },
+      { text: "Error handling", link: "/essentials/error" },
+      { text: "Testing", link: "/essentials/testing" },
     ],
   },
   {
     text: "The Outside World",
-    link: "/guide/outside-world",
+    link: "/outside-world",
     items: [
-      { text: "Serialization", link: "/guide/outside-world/json" },
-      { text: "HTTP Client(s)", link: "/guide/outside-world/http-client" },
-      { text: "HTTP Server", link: "/guide/outside-world/http-server" },
-      { text: "Databases", link: "/guide/outside-world/databases" },
+      { text: "Serialization", link: "/outside-world/json" },
+      { text: "HTTP Client(s)", link: "/outside-world/http-client" },
+      { text: "HTTP Server", link: "/outside-world/http-server" },
+      { text: "Databases", link: "/outside-world/databases" },
     ],
   },
   {
     text: "OTP Concurrency",
-    link: "/guide/otp",
+    link: "/otp",
     items: [
-      { text: "Processes", link: "/guide/otp/processes" },
-      { text: "Actors", link: "/guide/otp/actors" },
-      { text: "Supervisors", link: "/guide/otp/supervisors" },
+      { text: "Processes", link: "/otp/processes" },
+      { text: "Actors", link: "/otp/actors" },
+      { text: "Supervisors", link: "/otp/supervisors" },
     ],
   },
   {
     text: "BEAM Platform",
-    link: "/guide/platform",
+    link: "/platform",
     items: [
-      { text: "BEAM Interop", link: "/guide/platform/beam-interop" },
-      { text: "ETS", link: "/guide/platform/ets" },
-      { text: "Mnesia", link: "/guide/platform/mnesia" },
+      { text: "BEAM Interop", link: "/platform/beam-interop" },
+      { text: "ETS", link: "/platform/ets" },
+      { text: "Mnesia", link: "/platform/mnesia" },
     ],
   },
   {
     text: "Going Further",
-    link: "/guide/further",
+    link: "/further",
     items: [
-      { text: "JavaScript", link: "/guide/further/js" },
-      { text: "Ecosystem", link: "/guide/further/ecosystem" },
-      { text: "Resources", link: "/guide/further/resources" },
+      { text: "JavaScript", link: "/further/js" },
+      { text: "Ecosystem", link: "/further/ecosystem" },
+      { text: "Resources", link: "/further/resources" },
     ],
   },
 ];
 
-const patternsSidebar = [{ text: "Extensions", link: "/patterns/extensions" }];
+const patternsSidebar = [{ text: "Extensions", link: "/extensions" }];
 
 const nav = [
   {
