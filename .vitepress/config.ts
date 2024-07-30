@@ -3,9 +3,9 @@ import { defineConfig } from "vitepress";
 const guideSidebar = [
   {
     text: "The Essentials",
-    link: "guide/essentials",
+    // link: "guide/essentials",
     items: [
-      { text: "Error handling", link: "/essentials/error" },
+      { text: "Error Handling", link: "/essentials/error" },
       { text: "Testing", link: "/essentials/testing" },
     ],
   },
