@@ -83,4 +83,12 @@ export default defineConfig({
       { icon: "github", link: "https://github.com/vuejs/vitepress" },
     ],
   },
+  head: [
+    [
+      "script",
+      {},
+      "window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };",
+    ],
+    ["script", { defer: "", src: "/_vercel/insights/script.js" }],
+  ],
 });
