@@ -9,10 +9,11 @@ These failure scenarios come in two categories: recoverable and unrecoverable.
 In Gleam, the `Result` type is used to represent recoverable errors.
 In unrecoverable cases, an assertion can be used, crashing if there is an error.
 
-Notably, idiomatic Gleam **does not** use exceptions for control flow. Rather,
-the `result` module is used to explicity handle errors. If you're working with
-Erlang or Elixir code which uses exceptions, you can use the
-[`exception`](https://github.com/lpil/exception) library to catch them.
+Compared to Erlang and Elixir, **Gleam does not use exceptions for control flow**
+and is generally more conservative with assertions. Instead, the `gleam/result`
+module is used to explicity handle errors. When working with Erlang or Elixir
+code, you can use the [`exception`](https://github.com/lpil/exception) library
+to catch exceptions.
 
 ## Results
 
@@ -107,3 +108,81 @@ fn authenticate(payload: Dynamic) -> Result(String, AppError) {
 ```
 
 ## Errors with Context
+
+While a custom error type is useful for unifying errors, it's common to want to
+add context to your errors. Imagine a CLI application-- a stray "database error"
+wouldn't be very helpful to the user; you'd want a trace of what went wrong and
+where it occurred.
+
+To solve this, the [`snag`](https://github.com/lpil/snag) library provides a
+custom `Result` type which lets you contextualize errors with minimal
+boilerplate.
+
+```gleam
+// example taken from snag documentation
+import gleam/io
+import gleam/result
+import my_app.{User}
+import snag.{type Result}
+
+pub fn log_in(user_id: Int) -> Result(User) {
+  use api_key <- result.try(
+    my_app.read_file("api_key.txt")
+    |> snag.context("Could not load API key")
+  )
+
+  use session_token <- result.try(
+    user_id
+    |> my_app.create_session(api_key)
+    |> snag.context("Session creation failed")
+  )
+
+  Ok(session_token)
+}
+
+pub fn main() {
+  case log_in(42) {
+    Ok(session) -> io.println("Logged in!")
+    Error(snag) -> {
+      io.print(snag.pretty_print(snag))
+      my_app.exit(1)
+    }
+  }
+}
+```
+
+Ideally, Snag would be used at the top level of your application. Snag's error
+type is opaque, so you can't pattern match on it. For example, you wouldn't want
+to use Snag in a library, as it would make it challenging for users to match on
+errors; they'd be met with a wall of text. However, when the operation is
+pass/fail, Snag can provide better error messages.
+
+_This comparison is analogous to the difference between
+[`thiserror`](https://docs.rs/thiserror/) and [`anyhow`](https://docs.rs/anyhow)
+in Rust._
+
+## Assertions
+
+In Gleam, assertions are used to check for unrecoverable errors. When an
+assertion fails, the process crashes. The "let it crash" philosophy is common
+in Erlang and Elixir, and slightly less common in Gleam. But, just like in
+Erlang, [supervisors](/guide/otp/supervisors) can be used to watch and restart
+processes that crash.
+
+In Gleam, assertions follow the form of `let assert`. The `panic` keyword can
+also be used to crash the process.
+
+```gleam
+fn main() {
+    // This will crash if we can't authenticate
+    let assert Ok(username) = #("token", "gleam")
+        |> dynamic.from()
+        |> authencate()
+
+    case username {
+        "gleam" -> io.println("Logged in!")
+        // This will also crash
+        _ -> panic as "invalid username"
+    }
+}
+```
