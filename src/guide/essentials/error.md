@@ -62,10 +62,10 @@ codebase.
 
 ```gleam
 // src/project/error.gleam
-import gleam/decode
+import gleam/dynamic
 
 pub type AppError {
-    DecodeError(decode.DecodeError)
+    DecodeError(dynamic.DecodeError)
     DatabaseError(DatabaseError)
     AuthError(AuthError)
 }
@@ -74,27 +74,35 @@ pub type AuthError {
     Unauthorized
     Forbidden
 }
+
+pub type DatabaseError {
+}
 ```
 
 Then, you can use `map_error` to convert to your custom error type:
 
 ```gleam
 // src/project/foobar.gleam
-import gleam/dynamic.{Dynamic}
-import project/error.{AppError, AuthError, DatabaseError}
+import gleam/dynamic.{type Dynamic}
+import gleam/result
 
-fn authenticate(payload: Dynamic) -> Result(User, AppError) {
-    use #(token, username) <- payload
-        |> dynamic.tuple2(dynamic.string, dynamic.string)
-        |> result.map_error(DecodeError)
+import project/error.{type AppError, AuthError, DatabaseError, DecodeError}
 
-    use session <- db.lookup_session(token).map_error(DatabaseError)
+fn authenticate(payload: Dynamic) -> Result(String, AppError) {
+  use #(token, username) <- result.try(
+    payload
+    |> decode_payload()
+    |> result.map_error(DecodeError),
+  )
 
-    if session.user == username {
-        Ok(session.user)
-    } else {
-        Error(AuthError(error.Unauthorized))
-    }
+  use session <- result.try(
+    db.lookup_session(token) |> result.map_error(DatabaseError),
+  )
+
+  case session.username == username {
+    True -> Ok(session.username)
+    False -> Error(AuthError(error.Forbidden))
+  }
 }
 ```
 
