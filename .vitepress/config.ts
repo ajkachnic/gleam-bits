@@ -5,6 +5,7 @@ const guideSidebar = [
     text: "The Essentials",
     // link: "guide/essentials",
     items: [
+      { text: "Introduction", link: "/essentials/intro" },
       { text: "Error Handling", link: "/essentials/error" },
       { text: "Testing", link: "/essentials/testing" },
     ],

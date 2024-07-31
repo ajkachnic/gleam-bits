@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: Guide
-      link: /guide
+      link: /guide/essentials/intro
     - theme: alt
       text: Patterns
       link: /patterns
