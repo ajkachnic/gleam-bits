@@ -13,6 +13,7 @@ const guideSidebar = [
     text: "The Outside World",
     link: "/outside-world",
     items: [
+      { text: "Files", link: "/outside-world/files" },
       { text: "Serialization", link: "/outside-world/json" },
       { text: "HTTP Client(s)", link: "/outside-world/http-client" },
       { text: "HTTP Server", link: "/outside-world/http-server" },
@@ -34,7 +35,6 @@ const guideSidebar = [
     items: [
       { text: "BEAM Interop", link: "/platform/beam-interop" },
       { text: "ETS", link: "/platform/ets" },
-      { text: "Mnesia", link: "/platform/mnesia" },
     ],
   },
   {
@@ -69,7 +69,7 @@ export default defineConfig({
   title: "Gleam Bits",
   description: "Bite-sized pieces of Gleam knowledge",
   markdown: {
-    theme: "vitesse-dark",
+    theme: { light: "vitesse-light", dark: "vitesse-dark" },
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
