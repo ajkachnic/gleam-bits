@@ -186,3 +186,15 @@ fn main() {
     }
 }
 ```
+
+## When to Use What
+
+In general, prefer `Result` over assertions. It's more flexible and you can
+always `assert` it later. Try to push assertions to the edges of your processes
+where they're more visible. In most cases, you need context to know if an error
+is recoverable.
+
+For example, it makes sense for a CLI application to exit on a failed network
+request, but a long-running application should retry multiple times. Different
+applications have different failure states; pushing those decisions up helps
+build reliable, graceful applications.
