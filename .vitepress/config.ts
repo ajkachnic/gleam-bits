@@ -80,7 +80,7 @@ export default defineConfig({
       "/patterns/": { base: "/patterns/", items: patternsSidebar },
     },
     socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
+      { icon: "github", link: "https://github.com/ajkachnic/gleam-bits" },
     ],
   },
   head: [
