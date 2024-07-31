@@ -44,6 +44,7 @@ const guideSidebar = [
       { text: "JavaScript", link: "/further/js" },
       { text: "Ecosystem", link: "/further/ecosystem" },
       { text: "Resources", link: "/further/resources" },
+      { text: "Contributing", link: "/further/contributing" },
     ],
   },
 ];
