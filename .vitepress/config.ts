@@ -1,54 +1,54 @@
-import { defineConfig } from "vitepress";
+import { DefaultTheme, defineConfig } from "vitepress";
 
 const guideSidebar = [
   {
     text: "The Essentials",
-    // link: "guide/essentials",
+    base: "/guide/essentials/",
     items: [
-      { text: "Introduction", link: "/essentials/intro" },
-      { text: "Error Handling", link: "/essentials/error" },
-      { text: "Testing", link: "/essentials/testing" },
+      { text: "Introduction", link: "intro" },
+      { text: "Error Handling", link: "error" },
+      { text: "Testing", link: "testing" },
     ],
   },
   {
     text: "The Outside World",
-    link: "/outside-world",
+    base: "/guide/outside-world/",
     items: [
-      { text: "Files", link: "/outside-world/files" },
-      { text: "Serialization", link: "/outside-world/json" },
-      { text: "HTTP Client(s)", link: "/outside-world/http-client" },
-      { text: "HTTP Server", link: "/outside-world/http-server" },
-      { text: "Databases", link: "/outside-world/databases" },
+      { text: "Files", link: "files" },
+      { text: "Serialization", link: "serialization" },
+      { text: "HTTP Client(s)", link: "http-client" },
+      { text: "HTTP Server", link: "http-server" },
+      { text: "Databases", link: "databases" },
     ],
   },
   {
     text: "OTP Concurrency",
-    link: "/otp",
+    base: "/guide/otp",
     items: [
-      { text: "Processes", link: "/otp/processes" },
-      { text: "Actors", link: "/otp/actors" },
-      { text: "Supervisors", link: "/otp/supervisors" },
+      { text: "Processes", link: "processes" },
+      { text: "Actors", link: "actors" },
+      { text: "Supervisors", link: "supervisors" },
     ],
   },
   {
     text: "BEAM Platform",
-    link: "/platform",
+    base: "/guide/platform",
     items: [
-      { text: "BEAM Interop", link: "/platform/beam-interop" },
-      { text: "ETS", link: "/platform/ets" },
+      { text: "BEAM Interop", link: "beam-interop" },
+      { text: "ETS", link: "ets" },
     ],
   },
   {
     text: "Going Further",
-    link: "/further",
+    base: "/guide/further/",
     items: [
-      { text: "JavaScript", link: "/further/js" },
-      { text: "Ecosystem", link: "/further/ecosystem" },
-      { text: "Resources", link: "/further/resources" },
-      { text: "Contributing", link: "/further/contributing" },
+      { text: "JavaScript", link: "js" },
+      { text: "Ecosystem", link: "ecosystem" },
+      { text: "Resources", link: "resources" },
+      { text: "Contributing", link: "contributing" },
     ],
   },
-];
+] satisfies DefaultTheme.SidebarItem[];
 
 const patternsSidebar = [{ text: "Extensions", link: "/extensions" }];
 
