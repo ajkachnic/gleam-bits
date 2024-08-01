@@ -72,6 +72,7 @@ export default defineConfig({
   description: "Bite-sized pieces of Gleam knowledge",
   markdown: {
     theme: { light: "vitesse-light", dark: "vitesse-dark" },
+    typographer: true,
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
